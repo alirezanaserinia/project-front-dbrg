@@ -1,0 +1,11 @@
+.login-register {
+    padding: 5rem 3rem;
+    text-align: center;
+
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 5rem;
+}

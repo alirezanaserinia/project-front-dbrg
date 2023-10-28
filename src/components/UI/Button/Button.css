@@ -1,0 +1,59 @@
+.baloot-btn {
+    background: transparent;
+    border: none;
+    border-radius: 0.75rem;
+    outline: none;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.baloot-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem #D8C1A8;
+}
+
+.sm {
+    width: 5.5rem;
+    font-weight: 400;
+    font-size: 1.25rem;
+}
+.md {
+    width: 8rem;
+    font-weight: 500;
+    font-size: 1.35rem;
+}
+.lg {
+    width: 30rem;
+    font-weight: 600;
+    font-size: 1.45rem;
+}
+
+.submit {
+    background: #593C1C;
+    color: #F7F0E9;
+}
+.submit:hover {
+    background: #A97B47;
+    color: #F7F0E9;
+}
+
+.loading {
+    background: #D8C1A8;
+    color: #F7F0E9;
+}
+
+.danger {
+    color: #C82525;
+    background: #FFFFFF;
+}
+.danger:hover {
+    background: #C82525;
+    color: #FFFFFF;
+}
+.danger:focus {
+    box-shadow: 0 0 0 0.2rem #ffb9b9;
+}
+
+
