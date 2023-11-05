@@ -30,6 +30,7 @@ const Input = (props) => {
                     onChange={props.change}>
                 </textarea>
             )
+            break;
         default:
             inputElement = (
                 <input

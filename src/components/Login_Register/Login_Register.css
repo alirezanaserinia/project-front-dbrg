@@ -9,3 +9,83 @@
     flex-direction: column;
     padding: 3rem 5rem;
 }
+
+.login_register_main {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.login_register {
+    width: 390px;
+    height: 100%;
+    margin: auto;
+    padding: 40px 60px;
+    background: #FFFFFF;
+    border-radius: 0.75rem;
+    box-shadow: 0px 4px 4px rgba(154, 154, 154, 0.25);
+    align-items: center;
+    justify-content: center;
+}
+.login_register_welcome_text {
+    font-weight: 600;
+    font-size: 58px;
+    line-height: 60px;
+    color: #593C1C;
+}
+.login_register_baloot_logo {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.login_register_navigation {
+    line-height: 20px;
+    margin-top: auto;
+}
+.login_register_navigation span:first-child {
+    font-weight: 500;
+    font-size: 15px;
+    color: #593C1C;
+    opacity: 85%;
+}
+.login_register_navigation span:last-child a {
+    font-weight: 600;
+    font-size: 17px;
+    color: #593C1C;
+}
+.login_register_navigation span:last-child a:hover {
+    text-decoration: none;
+}
+.seperator {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+.seperator-line {
+    flex: 1; 
+    background-color: #A97B47; 
+    height: 1px;
+}
+.seperator p {
+    color: #593C1C;
+    margin: 0px 10px;
+}
+.github-link {
+    border-radius: 0.75rem;
+    margin: 0.5rem 0;
+    padding: 0.75rem 0.75rem;
+    background-color: #F7F0E9;
+    color: #593C1C;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.github-link:hover {
+    text-decoration: none;
+    background: #A97B47;
+    color: #F7F0E9;
+}
+.github-link img{
+    width: 1.75rem;
+    height: auto;
+}
+.github-link span {
+    font-size: 1rem;
+}

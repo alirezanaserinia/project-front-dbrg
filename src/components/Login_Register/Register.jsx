@@ -1,0 +1,223 @@
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+// import BalootLogo from '../../assets/images/baloot-logo.svg';
+import './Login_Register.css';
+// import { register } from '../../services/API';
+import { ToastContainer, toast } from 'react-toastify';
+import Button from '../../components/UI/Button/Button';
+import Input from '../../components/UI/Input/Input';
+// import githubLogo from '../../assets/images/github-mark.svg'
+
+const Register = () => {
+    const [state, setState] = useState({
+        form: {
+            username: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Username...',
+                    pattern: "^[a-zA-Z1-9_]+$",
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                used: false,
+            },
+            email: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'Email...',
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                used: false,
+            },
+            password: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'password',
+                    placeholder: 'Password...',
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                used: false,
+            },
+            birthDate: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'date',
+                    defaultValue: "2000-01-01",
+                },
+                value: null,
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                used: false,
+            },
+            address: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Address...',
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                used: false,
+            },
+        },
+    });
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        document.title = "Register";
+        let isUserLoggedin = localStorage.getItem('accessToken');
+        if (isUserLoggedin) {
+            navigate('/', { replace: true });
+        }
+    }, []);
+
+
+    let formHandler = async (e) => {
+        e.preventDefault();
+
+        const formData = {}
+        for (let item in state.form) {
+            formData[item] = state.form[item].value
+        }
+
+        try {
+            let username = state.form.username.value;
+            let password = state.form.password.value;
+            let email = state.form.email.value;
+            let birthDate = state.form.birthDate.value;
+            let address = state.form.address.value;
+            let isFormValid = state.form.username.valid && state.form.password.valid && state.form.email.valid &&
+                    state.form.birthDate.valid && state.form.address.valid;
+            if (!isFormValid) {
+                toast.error("There are items that require your attention!", {
+                    position: toast.POSITION.TOP_LEFT
+                });
+                return;
+            }
+            // const res = await register(username, password, email, address, birthDate);
+            // if (res.status === 200) {
+            //     // jwt : res.data
+            //     localStorage.setItem("accessToken", JSON.stringify(res.data));
+            //     console.log(JSON.parse(localStorage.getItem('accessToken')));
+            //     navigate('/', { replace: true });
+            //     window.location.reload();
+            // } else {
+            // }
+        } catch (err) {
+            if (err.response.status === 400) {
+                toast.error(err.response.data, {
+                    position: toast.POSITION.TOP_LEFT
+                });
+            }
+            else {
+                console.log(err);
+            }
+        }
+    };
+
+    let checkValidation = (value, rules) => {
+        let isValid = false
+
+        if (rules.required) {
+            isValid = value.trim() !== ''
+        }
+
+        return isValid
+    }
+
+    let inputChangeHandler = (event, inputElement) => {
+        const updatedForm = {
+            ...state.form,
+        }
+
+        const updatedElement = { ...updatedForm[inputElement] }
+
+        updatedElement.value = event.target.value
+
+        updatedElement.valid = checkValidation(
+            updatedElement.value,
+            updatedElement.validation
+        )
+
+        updatedElement.used = true
+
+        updatedForm[inputElement] = updatedElement
+
+        setState({ form: updatedForm })
+    }
+
+    const elementsArray = []
+
+    for (let item in state.form) {
+        elementsArray.push({
+            id: item,
+            config: state.form[item],
+        })
+    }
+
+
+    return (
+        <main style={{backgroundColor:"#F7F0E9"}}>
+            <div class="login_register_main">
+                <div class="login_register">
+                    <div class="login_register_welcome_text">
+                        Sign Up
+                    </div>
+                    <div class="login_register_baloot_logo">
+                        {/* <img src={BalootLogo} alt="Baloot-logo" /> */}
+                    </div>
+                    <form onSubmit={formHandler}>
+                        {elementsArray.map((item) => {
+                            return (
+                                <Input
+                                    key={item.id}
+                                    elementType={item.config.elementType}
+                                    elementConfig={item.config.elementConfig}
+                                    value={item.config.value}
+                                    invalid={!item.config.valid}
+                                    used={item.config.used}
+                                    change={(event) => inputChangeHandler(event, item.id)}
+                                />
+                            )
+                        })}
+                        <Button btnType="submit md">
+                            Register
+                        </Button>
+                    </form>
+                    <div class="login_register_navigation">
+                        <span>
+                            Already have account?
+                        </span>
+                        {" "}
+                        <span>
+                            <Link to="/login">
+                                Login
+                            </Link>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <ToastContainer />
+        </main>
+    )
+}
+export default Register;
