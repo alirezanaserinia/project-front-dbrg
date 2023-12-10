@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // import BalootLogo from '../../assets/images/baloot-logo.svg';
 import './Login_Register.css';
-// import { register } from '../../services/API';
+import { register } from '../../services/API';
 import { ToastContainer, toast } from 'react-toastify';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
@@ -71,24 +71,25 @@ const Register = () => {
                 });
                 return;
             }
-            // const res = await register(username, password, email, address, birthDate);
-            // if (res.status === 200) {
-            //     // jwt : res.data
-            //     localStorage.setItem("accessToken", JSON.stringify(res.data));
-            //     console.log(JSON.parse(localStorage.getItem('accessToken')));
-            //     navigate('/', { replace: true });
-            //     window.location.reload();
-            // } else {
-            // }
+            const res = await register(username, password);
+            if (res.status === 200) {
+                // jwt : res.data
+                localStorage.setItem("accessToken", JSON.stringify(res.data));
+                console.log(JSON.parse(localStorage.getItem('accessToken')));
+                navigate('/', { replace: true });
+                window.location.reload();
+            } else {
+            }
         } catch (err) {
-            if (err.response.status === 400) {
-                toast.error(err.response.data, {
-                    position: toast.POSITION.TOP_LEFT
-                });
-            }
-            else {
-                console.log(err);
-            }
+            console.log(err.response.data)
+            // if (err.response.status === 400) {
+            //     toast.error(err.response.data, {
+            //         position: toast.POSITION.TOP_LEFT
+            //     });
+            // }
+            // else {
+            //     console.log(err);
+            // }
         }
     };
 

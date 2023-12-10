@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // import BalootLogo from '../../assets/images/baloot-logo.svg';
 import './Login_Register.css';
-// import { login } from '../../services/API';
+import { login } from '../../services/API';
 import { ToastContainer, toast } from 'react-toastify';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
@@ -11,11 +11,12 @@ const Login = () => {
 
     const [state, setState] = useState({
         form: {
-            email: {
+            username: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'email',
-                    placeholder: 'Email...',
+                    type: 'text',
+                    placeholder: 'Username...',
+                    pattern: "^[a-zA-Z1-9_]+$",
                 },
                 value: '',
                 validation: {
@@ -42,7 +43,6 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-
     useEffect(() => {
         document.title = "Login";
         let isUserLoggedin = localStorage.getItem('accessToken');
@@ -60,35 +60,36 @@ const Login = () => {
         }
 
         try {
-            let email = state.form.email.value;
+            let username = state.form.username.value;
             let password = state.form.password.value;
-            let isFormValid = state.form.email.valid && state.form.password.valid;
+            let isFormValid = state.form.username.valid && state.form.password.valid;
             if (!isFormValid) {
                 toast.error("There are items that require your attention!", {
                     position: toast.POSITION.TOP_LEFT
                 });
                 return;
             }
-            // const res = await login(email, password);
-            // if (res.status === 200) {
-            //     // jwt : res.data
-            //     localStorage.setItem("accessToken", JSON.stringify(res.data));
-            //     console.log(JSON.parse(localStorage.getItem('accessToken')));
-            //     navigate('/', { replace: true });
-            //     window.location.reload();
-            // } else {
-            //     console.log(res);
-            // }
+            const res = await login(username, password);
+            if (res.status === 200) {
+                // jwt : res.data
+                localStorage.setItem("accessToken", JSON.stringify(res.data));
+                console.log(JSON.parse(localStorage.getItem('accessToken')));
+                navigate('/', { replace: true });
+                window.location.reload();
+            } else {
+                console.log(res);
+            }
             
         } catch (err) {
-            if (err.response.status === 401) {
-				toast.error(err.response.data, {
-					position: toast.POSITION.TOP_LEFT
-				});
-			}
-			else {
-				console.log(err);
-			}
+            console.log("Wrong Credentials!")
+            // if (err.response.status === 401) {
+			// 	toast.error(err.response.data, {
+			// 		position: toast.POSITION.TOP_LEFT
+			// 	});
+			// }
+			// else {
+			// 	console.log(err);
+			// }
         }
     };
 

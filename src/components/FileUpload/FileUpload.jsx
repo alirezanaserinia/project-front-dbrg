@@ -1,10 +1,25 @@
 import React, { useState } from "react";
+import Button from "../UI/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 const SingleFileUpload = () => {
    const [selectedFile, setSelectedFile] = useState(null);
    const handleFileChange = (e) => {
       setSelectedFile(e.target.files[0]);
    };
+
+   const navigate = useNavigate();
+
+   let logoutFormHandler = async (e) => {
+      e.preventDefault();
+      try {
+          localStorage.removeItem("accessToken");
+          navigate('/login', { replace: true });
+          
+      } catch (err) {
+          console.log(err);
+      }
+  };
 
    const handleUpload = async () => {
       if (!selectedFile) {
@@ -35,9 +50,12 @@ const SingleFileUpload = () => {
 
    return (
    <div>
-      <h2>Single File Upload</h2>
+      <h2>آپلود فایل</h2>
       <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload</button>
+      <button onClick={handleUpload}>آپلود</button>
+      <Button btnType="submit md" click={logoutFormHandler}>
+         logout
+      </Button>
    </div>
    );
 };
