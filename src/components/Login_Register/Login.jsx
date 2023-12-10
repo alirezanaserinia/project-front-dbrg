@@ -137,12 +137,12 @@ const Login = () => {
             <div className="login_register_main">
                 <div className="login_register">
                     <div className="login_register_welcome_text">
-                        Welcome
+                        ورود
                     </div>
                     <div className="login_register_baloot_logo">
                         {/* <img src={BalootLogo} alt="Baloot-logo"/> */}
                     </div>
-                    <form onSubmit={formHandler}>
+                    <form onSubmit={formHandler} className='login_btn'>
                         {elementsArray.map((item) => {
                             return (
                                 <Input
@@ -157,17 +157,17 @@ const Login = () => {
                             )
                         })}
                         <Button btnType="submit md">
-                            Login
+                            ورود
                         </Button>
                     </form>
                     <div className="login_register_navigation">
                         <span>
-                            Don’t have an account?
+                            حساب کاربری ندارید؟
                         </span>
                         {' '}
                         <span>
                             <Link to="/register">
-                                Register
+                                ثبت نام
                             </Link>
                         </span>
                     </div>

@@ -30,6 +30,7 @@
     font-size: 58px;
     line-height: 60px;
     color: #593C1C;
+    text-align: right;
 }
 .login_register_baloot_logo {
     margin-top: 20px;
@@ -38,6 +39,7 @@
 .login_register_navigation {
     line-height: 20px;
     margin-top: auto;
+    text-align: center;
 }
 .login_register_navigation span:first-child {
     font-weight: 500;
@@ -88,4 +90,8 @@
 }
 .github-link span {
     font-size: 1rem;
+}
+.login_btn {
+    padding: 2rem 1rem;
+    text-align: center;
 }

@@ -25,50 +25,11 @@ const Register = () => {
                 valid: false,
                 used: false,
             },
-            email: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'email',
-                    placeholder: 'Email...',
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                used: false,
-            },
             password: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
                     placeholder: 'Password...',
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                used: false,
-            },
-            birthDate: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'date',
-                    defaultValue: "2000-01-01",
-                },
-                value: null,
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                used: false,
-            },
-            address: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Address...',
                 },
                 value: '',
                 validation: {
@@ -102,11 +63,8 @@ const Register = () => {
         try {
             let username = state.form.username.value;
             let password = state.form.password.value;
-            let email = state.form.email.value;
-            let birthDate = state.form.birthDate.value;
-            let address = state.form.address.value;
-            let isFormValid = state.form.username.valid && state.form.password.valid && state.form.email.valid &&
-                    state.form.birthDate.valid && state.form.address.valid;
+            
+            let isFormValid = state.form.username.valid && state.form.password.valid;
             if (!isFormValid) {
                 toast.error("There are items that require your attention!", {
                     position: toast.POSITION.TOP_LEFT
@@ -180,12 +138,12 @@ const Register = () => {
             <div class="login_register_main">
                 <div class="login_register">
                     <div class="login_register_welcome_text">
-                        Sign Up
+                        ثبت نام
                     </div>
                     <div class="login_register_baloot_logo">
                         {/* <img src={BalootLogo} alt="Baloot-logo" /> */}
                     </div>
-                    <form onSubmit={formHandler}>
+                    <form onSubmit={formHandler} className='login_btn'>
                         {elementsArray.map((item) => {
                             return (
                                 <Input
@@ -200,17 +158,17 @@ const Register = () => {
                             )
                         })}
                         <Button btnType="submit md">
-                            Register
+                            ثبت نام
                         </Button>
                     </form>
                     <div class="login_register_navigation">
                         <span>
-                            Already have account?
+                            قبلا ثبت نام کرده اید؟
                         </span>
                         {" "}
                         <span>
                             <Link to="/login">
-                                Login
+                                ورود
                             </Link>
                         </span>
                     </div>
