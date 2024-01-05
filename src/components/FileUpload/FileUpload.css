@@ -1,34 +1,22 @@
 .file-upload {
-    background-color: #90e0ef;
-    text-align: center;
+    margin: 5rem auto;
     padding: 3rem 5rem;
-    margin: 5rem 15rem;
+    text-align: center;
+    width: 50%;
+    background-color: #caf0f8;
     border-color: #0077b6;
     border-radius: 0.75rem;
     box-shadow: 0.25rem 0.5rem 0.75rem #0077b6;
 }
+.healthy {
+    padding: 1rem 3rem;
 
-
-.customerFileBtn{
-    width: 50%;
-    margin:auto;
 }
+.patient {
+    padding: 1rem 3rem;
 
-input[type='file']{
-    background-color:transparent;
+
 }
-
-.customerFileBtn input[type='file'] {
-    padding:6px 0 0 7px;
-    &::-webkit-file-upload-button {
-        display: none;
-    }
-    &::file-selector-button {
-        display: none;
-    }
-}
-
-.customerFileBtn label:hover {
-    background-color: #dde0e3;
-    cursor: pointer;
+.upload-status {
+    text-align: center;
 }

@@ -134,55 +134,34 @@ const Login = () => {
     }
 
     return (
-        <main>
-            <div className="login_register">
-                <div className="login_register_welcome_text">
+        <div className="login_register">
+            <h1>ورود</h1>
+            <form onSubmit={formHandler} className='login_btn'>
+                {elementsArray.map((item) => {
+                    return (
+                        <Input
+                            key={item.id}
+                            elementType={item.config.elementType}
+                            elementConfig={item.config.elementConfig}
+                            value={item.config.value}
+                            invalid={!item.config.valid}
+                            used={item.config.used}
+                            change={(event) => inputChangeHandler(event, item.id)}
+                        />
+                    )
+                })}
+                <Button btnType="submit md">
                     ورود
-                </div>
-                <div className="login_register_baloot_logo">
-                    {/* <img src={BalootLogo} alt="Baloot-logo"/> */}
-                </div>
-                <form onSubmit={formHandler} className='login_btn'>
-                    {elementsArray.map((item) => {
-                        return (
-                            <Input
-                                key={item.id}
-                                elementType={item.config.elementType}
-                                elementConfig={item.config.elementConfig}
-                                value={item.config.value}
-                                invalid={!item.config.valid}
-                                used={item.config.used}
-                                change={(event) => inputChangeHandler(event, item.id)}
-                            />
-                        )
-                    })}
-                    <Button btnType="submit md">
-                        ورود
-                    </Button>
-                </form>
-                <div className="login_register_navigation">
-                    <span>
-                        حساب کاربری ندارید؟
-                    </span>
-                    {' '}
-                    <span>
-                        <Link to="/register">
-                            ثبت نام
-                        </Link>
-                    </span>
-                </div>
-                {/* <div className='seperator'>
-                        <div className='seperator-line'></div> <p>OR</p><div className='seperator-line'></div>
-                    </div>
-                    <Link className='github-link' to={GithubURL}>
-                        <img src={githubLogo} />
-                        <span>
-                            Continue with Github
-                        </span>
-                    </Link> */}
+                </Button>
+            </form>
+            <div className="login_register_navigation">
+                <p>حساب کاربری ندارید؟</p>
+                {' '}
+                <Link to="/register">
+                    ثبت نام
+                </Link>
             </div>
-            <ToastContainer />
-        </main>
+        </div>
     )
 }
 export default Login;

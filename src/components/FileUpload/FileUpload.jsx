@@ -57,8 +57,8 @@ const SingleFileUpload = () => {
 					console.log('file1.name')
 					console.log(newFile1.name)
 
-					setFile1(null);
-					setFile2(null);
+					// setFile1(null);
+					// setFile2(null);
 				})
 				.catch((error) => {
 					console.error(error);
@@ -82,28 +82,27 @@ const SingleFileUpload = () => {
 
 	return (
 		<div className="file-upload">
-			<h3> نمونه های خود را در قسمت زیر بارگزاری کنید </h3>
-			<div>
-				<p>نمونه های سالم</p>
+			<h2> نمونه های خود را در قسمت زیر بارگزاری کنید </h2>
+			<div className="healthy">
+				<h3>نمونه های سالم</h3>
 				<input type="file" onChange={handleFile1Change} accept=".csv" />
 			</div>
-			<div>
-				<p>نمونه های بیمار</p>
+
+			<div className="patient">
+				<h3>نمونه های بیمار</h3>
 				<input type="file" onChange={handleFile2Change} accept=".csv" />
 			</div>
-			<div>
-				<Button btnType="submit md" click={handleUpload}>
-					آپلود فایل ها
-				</Button>
-			</div>
+			<Button btnType="submit lg" click={handleUpload}>
+				آپلود فایل ها
+			</Button>
 
 			{uploadProgress > 0 && (
 				<div>
-					<p>Uploading: {uploadProgress}%</p>
+					<p className="upload-status">Uploading: {uploadProgress}%</p>
 					<progress value={uploadProgress} max="100" />
 				</div>
 			)}
-			{uploadStatus && <p>{uploadStatus}</p>}
+			{uploadStatus && <p className="upload-status">{uploadStatus}</p>}
 
 			<div>
 				<Button btnType="danger md" click={logoutFormHandler}>

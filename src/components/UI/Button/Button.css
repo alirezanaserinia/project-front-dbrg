@@ -16,17 +16,17 @@
 
 .sm {
     width: 5.5rem;
-    font-weight: 400;
+    /* font-weight: 400; */
     font-size: 1.25rem;
 }
 .md {
     width: 8rem;
-    font-weight: 500;
+    /* font-weight: 500; */
     font-size: 1.35rem;
 }
 .lg {
-    width: 30rem;
-    font-weight: 600;
+    width: 12rem;
+    /* font-weight: 600; */
     font-size: 1.45rem;
 }
 

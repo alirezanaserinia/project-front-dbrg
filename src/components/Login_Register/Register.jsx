@@ -63,7 +63,7 @@ const Register = () => {
         try {
             let username = state.form.username.value;
             let password = state.form.password.value;
-            
+
             let isFormValid = state.form.username.valid && state.form.password.valid;
             if (!isFormValid) {
                 toast.error("There are items that require your attention!", {
@@ -135,48 +135,34 @@ const Register = () => {
 
 
     return (
-        <main style={{backgroundColor:"#90e0ef"}}>
-            <div class="login_register_main">
-                <div class="login_register">
-                    <div class="login_register_welcome_text">
-                        ثبت نام
-                    </div>
-                    <div class="login_register_baloot_logo">
-                        {/* <img src={BalootLogo} alt="Baloot-logo" /> */}
-                    </div>
-                    <form onSubmit={formHandler} className='login_btn'>
-                        {elementsArray.map((item) => {
-                            return (
-                                <Input
-                                    key={item.id}
-                                    elementType={item.config.elementType}
-                                    elementConfig={item.config.elementConfig}
-                                    value={item.config.value}
-                                    invalid={!item.config.valid}
-                                    used={item.config.used}
-                                    change={(event) => inputChangeHandler(event, item.id)}
-                                />
-                            )
-                        })}
-                        <Button btnType="submit md">
-                            ثبت نام
-                        </Button>
-                    </form>
-                    <div class="login_register_navigation">
-                        <span>
-                            قبلا ثبت نام کرده اید؟
-                        </span>
-                        {" "}
-                        <span>
-                            <Link to="/login">
-                                ورود
-                            </Link>
-                        </span>
-                    </div>
-                </div>
+        <div class="login_register">
+            <h1>ثبت نام</h1>
+            <form onSubmit={formHandler} className='login_btn'>
+                {elementsArray.map((item) => {
+                    return (
+                        <Input
+                            key={item.id}
+                            elementType={item.config.elementType}
+                            elementConfig={item.config.elementConfig}
+                            value={item.config.value}
+                            invalid={!item.config.valid}
+                            used={item.config.used}
+                            change={(event) => inputChangeHandler(event, item.id)}
+                        />
+                    )
+                })}
+                <Button btnType="submit md">
+                    ثبت نام
+                </Button>
+            </form>
+            <div className="login_register_navigation">
+                <p>قبلا ثبت نام کرده اید؟</p>
+                {' '}
+                <Link to="/login">
+                    ورود
+                </Link>
             </div>
-            <ToastContainer />
-        </main>
+        </div>
     )
 }
 export default Register;
