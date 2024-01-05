@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'Vazir-FD';
+    src: url('./fonts/Vazir.woff');
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #90e0ef;
+}
+body *{
+    font-family: 'Vazir-FD';
+}
+h1, h2, h3, h4, p {
+    margin: 0;
+    color: #03045e;
+    text-align: right;
+}

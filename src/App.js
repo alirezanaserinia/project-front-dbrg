@@ -1,12 +1,12 @@
-import './App.css';
-import SingleFileUpload from './components/FileUpload/FileUpload';
+// import './App.css';
+import FileUpload from './components/FileUpload/FileUpload';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <SingleFileUpload/>
-      </header>
+      <FileUpload />
+      {/* <header className="App-header">
+      </header> */}
     </div>
   );
 }

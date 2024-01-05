@@ -1,82 +1,166 @@
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login_Register.css';
-import { useEffect, useState } from 'react';
-import Wrapper from '../../hoc/Wrapper';
+import { login } from '../../services/API';
+import { ToastContainer, toast } from 'react-toastify';
+import Button from '../../components/UI/Button/Button';
+import Input from '../../components/UI/Input/Input';
 
 const Login = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+
+    const [state, setState] = useState({
+        form: {
+            username: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'نام کاربری',
+                    pattern: "^[a-zA-Z1-9_]+$",
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                used: false,
+            },
+            password: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'password',
+                    placeholder: 'رمز عبور',
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                used: false,
+            },
+        },
+    });
+
     const navigate = useNavigate();
 
     useEffect(() => {
         document.title = "Login";
         let isUserLoggedin = localStorage.getItem('accessToken');
         if (isUserLoggedin) {
-            navigate('/', { replace: true });
+            navigate('/home', { replace: true });
         }
     }, []);
 
     let formHandler = async (e) => {
         e.preventDefault();
+
+        const formData = {}
+        for (let item in state.form) {
+            formData[item] = state.form[item].value
+        }
+
         try {
-            // // const res = await login(username, password);
-            // if (res.status === 200) {
-            //     // jwt : res.data
-            //     localStorage.setItem("accessToken", JSON.stringify(res.data));
-            //     console.log(JSON.parse(localStorage.getItem('accessToken')));
-            //     navigate('/', { replace: true });
-            //     // window.location.reload();
-            // } else {
-            //     console.log(res);
-            // }
+            let username = state.form.username.value;
+            let password = state.form.password.value;
+            let isFormValid = state.form.username.valid && state.form.password.valid;
+            if (!isFormValid) {
+                toast.error("There are items that require your attention!", {
+                    position: toast.POSITION.TOP_LEFT
+                });
+                return;
+            }
+            const res = await login(username, password);
+            if (res.status === 200) {
+                // jwt : res.data
+                localStorage.setItem("accessToken", JSON.stringify(res.data));
+                console.log(JSON.parse(localStorage.getItem('accessToken')));
+                navigate('/home', { replace: true });
+                // window.location.reload();
+            } else {
+                console.log(res);
+            }
 
         } catch (err) {
+            console.log("Wrong Credentials!")
             // if (err.response.status === 401) {
             // 	toast.error(err.response.data, {
             // 		position: toast.POSITION.TOP_LEFT
             // 	});
             // }
             // else {
-            console.log(err);
+            // 	console.log(err);
             // }
         }
     };
-    return (
-        <Wrapper>
-            <div className="login-register">
-                <h2>
-                    Welcome
-                </h2>
-                <form onSubmit={formHandler} className='login-form'>
-                            <input type="text" name="Username" placeholder="Username" required
-                                onChange={(event) => setUsername(event.target.value)} />
-                        
-                            
-                            <input type="password" name="Password" placeholder="Password" required
-                                onChange={(event) => setPassword(event.target.value)} />
-                        
-                    
-                    <div className="login_register_form_submit">
-                        <button className="btn" type="submit">
-                            Login
-                        </button>
-                    </div>
-                </form>
-                <div className="login_register_navigation">
-                    <span>
-                        Don’t have an account?
-                    </span>
-                    {' '}
-                    <span>
-                        <Link to="/register">
-                            Register
-                        </Link>
-                    </span>
-                </div>
-            </div>
 
-            {/* <ToastContainer /> */}
-        </Wrapper>
+    let checkValidation = (value, rules) => {
+        let isValid = false
+
+        if (rules.required) {
+            isValid = value.trim() !== ''
+        }
+
+        return isValid
+    }
+
+    let inputChangeHandler = (event, inputElement) => {
+        const updatedForm = {
+            ...state.form,
+        }
+
+        const updatedElement = { ...updatedForm[inputElement] }
+
+        updatedElement.value = event.target.value
+
+        updatedElement.valid = checkValidation(
+            updatedElement.value,
+            updatedElement.validation
+        )
+
+        updatedElement.used = true
+
+        updatedForm[inputElement] = updatedElement
+
+        setState({ form: updatedForm })
+    }
+
+    const elementsArray = []
+
+    for (let item in state.form) {
+        elementsArray.push({
+            id: item,
+            config: state.form[item],
+        })
+    }
+
+    return (
+        <div className="login_register">
+            <h1>ورود</h1>
+            <form onSubmit={formHandler} className='login_btn'>
+                {elementsArray.map((item) => {
+                    return (
+                        <Input
+                            key={item.id}
+                            elementType={item.config.elementType}
+                            elementConfig={item.config.elementConfig}
+                            value={item.config.value}
+                            invalid={!item.config.valid}
+                            used={item.config.used}
+                            change={(event) => inputChangeHandler(event, item.id)}
+                        />
+                    )
+                })}
+                <Button btnType="submit md">
+                    ورود
+                </Button>
+            </form>
+            <div className="login_register_navigation">
+                <p>حساب کاربری ندارید؟</p>
+                {' '}
+                <Link to="/register">
+                    ثبت نام
+                </Link>
+            </div>
+        </div>
     )
 }
 export default Login;

@@ -1,11 +1,26 @@
-.login-register {
-    padding: 5rem 3rem;
+.login_register {
+    margin: 5rem auto;
+    padding: 3rem 5rem;
     text-align: center;
-
+    background: #FFFFFF;
+    border-radius: 0.75rem;
+    width: 35%;
+    box-shadow: 0.25rem 0.5rem 0.75rem #0077b6;
 }
 
-.login-form {
-    display: flex;
-    flex-direction: column;
-    padding: 3rem 5rem;
+.login_register form {
+    padding: 1rem 1rem;
+}
+
+.login_register_navigation p {
+    opacity: 85%;
+    text-align: center;
+}
+
+.login_register_navigation a {
+    color: #0077b6;
+}
+
+.login_register_navigation a:hover {
+    text-decoration: none;
 }

@@ -1,77 +1,79 @@
-body {
-    padding: 0;
-    margin: 0;
-  }
-  
-  #error_box {
-    position: relative;
-    height: 100vh;
-    background: #F7F0E9;
-  }
-  
-  #error_box .error_content {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-  }
-  
-  .error_content {
-    max-width: 767px;
-    width: 100%;
-    line-height: 1.4;
-    text-align: center;
-    padding: 15px;
-  }
-  
-  .error_content .error_status_code {
-    position: relative;
-    height: 220px;
-  }
-  
-  .error_content .error_status_code h1 {
-    font-family: 'Kanit', sans-serif;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-    font-size: 186px;
-    font-weight: 200;
-    margin: 0px;
-    background: linear-gradient(130deg, #ffa34f, #ff6f68);
-    color: #A97B47;
-    -webkit-background-clip: text;
-    background-clip: text;
-    text-transform: uppercase;
-  }
-  
-  .error_content h2 {
-    font-family: 'Kanit', sans-serif;
-    font-size: 33px;
-    font-weight: 200;
-    text-transform: uppercase;
-    margin-top: 0px;
-    margin-bottom: 25px;
-    letter-spacing: 3px;
-  }
-  
-  
-  .error_content p {
-    font-family: 'Kanit', sans-serif;
-    font-size: 16px;
-    font-weight: 200;
-    margin-top: 0px;
-    margin-bottom: 25px;
-  }
-  
-  .error_content a {
-    font-family: 'Kanit', sans-serif;
-    color: #A97B47;
-    font-weight: 200;
-    text-decoration: none;
-    border-bottom: 1px dashed #A97B47;
-  }
+/* body {
+  padding: 0;
+  margin: 0;
+} */
+
+#error_box {
+  position: relative;
+  height: 100vh;
+  background: #caf0f8;
+}
+
+#error_box .error_content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.error_content {
+  max-width: 767px;
+  width: 100%;
+  line-height: 1.4;
+  text-align: center;
+  padding: 15px;
+}
+
+.error_content .error_status_code {
+  position: relative;
+  height: 220px;
+}
+
+.error_content .error_status_code h1 {
+  font-family: 'Kanit', sans-serif;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 186px;
+  font-weight: 200;
+  margin: 0px;
+  background: linear-gradient(130deg, #4f90ff, #1f0a3a);
+  color: #03045e;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-transform: uppercase;
+}
+
+.error_content h2 {
+  font-family: 'Kanit', sans-serif;
+  font-size: 33px;
+  font-weight: 200;
+  text-transform: uppercase;
+  margin-top: 0px;
+  margin-bottom: 25px;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+
+.error_content p {
+  font-family: 'Kanit', sans-serif;
+  font-size: 16px;
+  font-weight: 200;
+  margin-top: 0px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.error_content a {
+  font-family: 'Kanit', sans-serif;
+  color: #03045e;
+  font-weight: 200;
+  text-decoration: none;
+  border-bottom: 1px dashed #03045e;
+}
