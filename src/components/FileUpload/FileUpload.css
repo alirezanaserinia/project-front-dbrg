@@ -9,13 +9,12 @@
     box-shadow: 0.25rem 0.5rem 0.75rem #0077b6;
 }
 .healthy {
+    margin-top: 1rem;
     padding: 1rem 3rem;
-
 }
 .patient {
+    margin-bottom: 1rem;
     padding: 1rem 3rem;
-
-
 }
 .upload-status {
     text-align: center;

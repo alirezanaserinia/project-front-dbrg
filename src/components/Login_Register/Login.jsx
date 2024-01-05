@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import BalootLogo from '../../assets/images/baloot-logo.svg';
 import './Login_Register.css';
 import { login } from '../../services/API';
 import { ToastContainer, toast } from 'react-toastify';
@@ -75,7 +74,7 @@ const Login = () => {
                 localStorage.setItem("accessToken", JSON.stringify(res.data));
                 console.log(JSON.parse(localStorage.getItem('accessToken')));
                 navigate('/home', { replace: true });
-                window.location.reload();
+                // window.location.reload();
             } else {
                 console.log(res);
             }

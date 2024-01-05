@@ -77,7 +77,7 @@ const Register = () => {
                 localStorage.setItem("accessToken", JSON.stringify(res.data));
                 console.log(JSON.parse(localStorage.getItem('accessToken')));
                 navigate('/home', { replace: true });
-                window.location.reload();
+                // window.location.reload();
             } else {
             }
         } catch (err) {

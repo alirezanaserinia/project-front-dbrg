@@ -4,11 +4,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './FileUpload.css'
 
-const SingleFileUpload = () => {
+const FileUpload = () => {
 	const [file1, setFile1] = useState(null);
 	const [file2, setFile2] = useState(null);
 	const [uploadProgress, setUploadProgress] = useState(0);
 	const [uploadStatus, setUploadStatus] = useState(false);
+
+	useEffect(() => {
+        document.title = "Home";
+    }, []);
 
 	useEffect(() => {
 		if (file1 && file2) {
@@ -54,8 +58,7 @@ const SingleFileUpload = () => {
 				})
 				.then((response) => {
 					setUploadStatus('!نمونه های شما با موفقیت بارگزاری شدند');
-					console.log('file1.name')
-					console.log(newFile1.name)
+					console.log('Successful Upload')
 
 					// setFile1(null);
 					// setFile2(null);
@@ -85,11 +88,13 @@ const SingleFileUpload = () => {
 			<h2> نمونه های خود را در قسمت زیر بارگزاری کنید </h2>
 			<div className="healthy">
 				<h3>نمونه های سالم</h3>
+				<p>(.csv در قالب میکرو آرایه با فرمت)</p>
 				<input type="file" onChange={handleFile1Change} accept=".csv" />
 			</div>
 
 			<div className="patient">
 				<h3>نمونه های بیمار</h3>
+				<p>(.csv در قالب میکرو آرایه با فرمت)</p>
 				<input type="file" onChange={handleFile2Change} accept=".csv" />
 			</div>
 			<Button btnType="submit lg" click={handleUpload}>
@@ -113,4 +118,4 @@ const SingleFileUpload = () => {
 	);
 }
 
-export default SingleFileUpload;
+export default FileUpload;

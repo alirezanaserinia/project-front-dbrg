@@ -1,10 +1,10 @@
 // import './App.css';
-import SingleFileUpload from './components/FileUpload/FileUpload';
+import FileUpload from './components/FileUpload/FileUpload';
 
 function App() {
   return (
     <div className="App">
-      <SingleFileUpload />
+      <FileUpload />
       {/* <header className="App-header">
       </header> */}
     </div>
