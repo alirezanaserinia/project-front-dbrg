@@ -3,6 +3,12 @@
     src: url('./fonts/Vazir.woff');
 }
 
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #00b4d8;
+}
+
 body *{
     font-family: 'Vazir-FD';
 }

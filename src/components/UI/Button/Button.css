@@ -11,7 +11,7 @@
 
 .baloot-btn:focus {
     outline: none;
-    box-shadow: 0 0 0 0.2rem #D8C1A8;
+    box-shadow: 0 0 0 0.2rem #90e0ef;
 }
 
 .sm {
@@ -31,29 +31,29 @@
 }
 
 .submit {
-    background: #593C1C;
-    color: #F7F0E9;
+    background: #0077b6;
+    color: #caf0f8;
 }
 .submit:hover {
-    background: #A97B47;
-    color: #F7F0E9;
+    background: #00b4d8;
+    color: #caf0f8;
 }
 
 .loading {
-    background: #D8C1A8;
-    color: #F7F0E9;
+    background: #00b4d8;
+    color: #caf0f8;
 }
 
 .danger {
-    color: #C82525;
-    background: #FFFFFF;
+    color: #FFFFFF;
+    background: #C82525;
 }
 .danger:hover {
-    background: #C82525;
-    color: #FFFFFF;
+    background: #ffb9b9;
+    color: #C82525;
 }
 .danger:focus {
-    box-shadow: 0 0 0 0.2rem #ffb9b9;
+    box-shadow: 0 0 0 0.2rem #FFFFFF;
 }
 
 

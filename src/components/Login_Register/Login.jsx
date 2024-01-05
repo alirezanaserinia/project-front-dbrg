@@ -15,7 +15,7 @@ const Login = () => {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Username...',
+                    placeholder: 'نام کاربری',
                     pattern: "^[a-zA-Z1-9_]+$",
                 },
                 value: '',
@@ -29,7 +29,7 @@ const Login = () => {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
-                    placeholder: 'Password...',
+                    placeholder: 'رمز عبور',
                 },
                 value: '',
                 validation: {
@@ -47,7 +47,7 @@ const Login = () => {
         document.title = "Login";
         let isUserLoggedin = localStorage.getItem('accessToken');
         if (isUserLoggedin) {
-            navigate('/', { replace: true });
+            navigate('/home', { replace: true });
         }
     }, []);
 
@@ -74,22 +74,22 @@ const Login = () => {
                 // jwt : res.data
                 localStorage.setItem("accessToken", JSON.stringify(res.data));
                 console.log(JSON.parse(localStorage.getItem('accessToken')));
-                navigate('/', { replace: true });
+                navigate('/home', { replace: true });
                 window.location.reload();
             } else {
                 console.log(res);
             }
-            
+
         } catch (err) {
             console.log("Wrong Credentials!")
             // if (err.response.status === 401) {
-			// 	toast.error(err.response.data, {
-			// 		position: toast.POSITION.TOP_LEFT
-			// 	});
-			// }
-			// else {
-			// 	console.log(err);
-			// }
+            // 	toast.error(err.response.data, {
+            // 		position: toast.POSITION.TOP_LEFT
+            // 	});
+            // }
+            // else {
+            // 	console.log(err);
+            // }
         }
     };
 
@@ -134,45 +134,44 @@ const Login = () => {
     }
 
     return (
-        <main style={{backgroundColor:"#F7F0E9"}}>
-            <div className="login_register_main">
-                <div className="login_register">
-                    <div className="login_register_welcome_text">
+        <main>
+            <div className="login_register">
+                <div className="login_register_welcome_text">
+                    ورود
+                </div>
+                <div className="login_register_baloot_logo">
+                    {/* <img src={BalootLogo} alt="Baloot-logo"/> */}
+                </div>
+                <form onSubmit={formHandler} className='login_btn'>
+                    {elementsArray.map((item) => {
+                        return (
+                            <Input
+                                key={item.id}
+                                elementType={item.config.elementType}
+                                elementConfig={item.config.elementConfig}
+                                value={item.config.value}
+                                invalid={!item.config.valid}
+                                used={item.config.used}
+                                change={(event) => inputChangeHandler(event, item.id)}
+                            />
+                        )
+                    })}
+                    <Button btnType="submit md">
                         ورود
-                    </div>
-                    <div className="login_register_baloot_logo">
-                        {/* <img src={BalootLogo} alt="Baloot-logo"/> */}
-                    </div>
-                    <form onSubmit={formHandler} className='login_btn'>
-                        {elementsArray.map((item) => {
-                            return (
-                                <Input
-                                    key={item.id}
-                                    elementType={item.config.elementType}
-                                    elementConfig={item.config.elementConfig}
-                                    value={item.config.value}
-                                    invalid={!item.config.valid}
-                                    used={item.config.used}
-                                    change={(event) => inputChangeHandler(event, item.id)}
-                                />
-                            )
-                        })}
-                        <Button btnType="submit md">
-                            ورود
-                        </Button>
-                    </form>
-                    <div className="login_register_navigation">
-                        <span>
-                            حساب کاربری ندارید؟
-                        </span>
-                        {' '}
-                        <span>
-                            <Link to="/register">
-                                ثبت نام
-                            </Link>
-                        </span>
-                    </div>
-                    {/* <div className='seperator'>
+                    </Button>
+                </form>
+                <div className="login_register_navigation">
+                    <span>
+                        حساب کاربری ندارید؟
+                    </span>
+                    {' '}
+                    <span>
+                        <Link to="/register">
+                            ثبت نام
+                        </Link>
+                    </span>
+                </div>
+                {/* <div className='seperator'>
                         <div className='seperator-line'></div> <p>OR</p><div className='seperator-line'></div>
                     </div>
                     <Link className='github-link' to={GithubURL}>
@@ -181,7 +180,6 @@ const Login = () => {
                             Continue with Github
                         </span>
                     </Link> */}
-                </div>
             </div>
             <ToastContainer />
         </main>

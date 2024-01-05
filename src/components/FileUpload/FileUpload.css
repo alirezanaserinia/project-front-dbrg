@@ -1,3 +1,14 @@
+.file-upload {
+    background-color: #90e0ef;
+    text-align: center;
+    padding: 3rem 5rem;
+    margin: 5rem 15rem;
+    border-color: #0077b6;
+    border-radius: 0.75rem;
+    box-shadow: 0.25rem 0.5rem 0.75rem #0077b6;
+}
+
+
 .customerFileBtn{
     width: 50%;
     margin:auto;

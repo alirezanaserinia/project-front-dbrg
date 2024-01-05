@@ -1,132 +1,117 @@
-// import React, { useState } from "react";
-// import Button from "../UI/Button/Button";
-// import { useNavigate } from "react-router-dom";
-// import { uploadSingleFile } from "../../services/API";
-
-// const SingleFileUpload = () => {
-//    const [selectedFile, setSelectedFile] = useState(null);
-//    const handleFileChange = (e) => {
-//       setSelectedFile(e.target.files[0]);
-//    };
-
-//    const navigate = useNavigate();
-
-//    let logoutFormHandler = async (e) => {
-//       e.preventDefault();
-//       try {
-//           localStorage.removeItem("accessToken");
-//           navigate('/login', { replace: true });
-
-//       } catch (err) {
-//           console.log(err);
-//       }
-//   };
-
-//    const handleUpload = async () => {
-//       if (!selectedFile) {
-//          alert("Please first select a file");
-//          return;
-//       }
-//       console.log("selectedFile")
-//       console.log(selectedFile)
-
-//       // const formData = new FormData();
-//       // formData.append("file", selectedFile);
-
-//       try {
-//          // Replace this URL with your server-side endpoint for handling file uploads
-//          // const response = await fetch("http://localhost:8080/api/uploadfile", {
-//          //    method: "POST",
-//          //    body: formData
-//          // });
-
-//          const response = await uploadSingleFile(selectedFile);
-//          console.log("response")
-//          console.log(response)
-//          if (response.status == 200) {
-//             alert("File upload is  successfully");
-//          } else {
-//             alert("Failed to upload the file due to errors");
-//          }
-//       } catch (error) {
-//          console.log(error)
-//          // console.error("Error while uploading the file:", error);
-//          // alert("Error occurred while uploading the file");
-//       }
-//    };
-
-//    return (
-//    <div>
-//       <h2>آپلود فایل</h2>
-//       <input type="file" onChange={handleFileChange} />
-//       <button onClick={handleUpload}>آپلود</button>
-//       <Button btnType="submit md" click={logoutFormHandler}>
-//          logout
-//       </Button>
-//    </div>
-//    );
-// };
-// export default SingleFileUpload;
-
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
+import Button from "../UI/Button/Button";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import './FileUpload.css'
 
 const SingleFileUpload = () => {
-	const [files, setFiles] = useState([]);
-	// onChange function that reads files on uploading them
-	// files read are encoded as Base64
-	function onFileUpload(event) {
-		event.preventDefault();
-		let id = event.target.id;
-		let file_reader = new FileReader();
-		let file = event.target.files[0];
-		file_reader.onload = () => {
-			setFiles([...files, { file_id: id, uploaded_file: file_reader.result }]);
-		};
-		file_reader.readAsDataURL(file);
-	}
+	const [file1, setFile1] = useState(null);
+	const [file2, setFile2] = useState(null);
+	const [uploadProgress, setUploadProgress] = useState(0);
+	const [uploadStatus, setUploadStatus] = useState(false);
 
-
-	function handleSubmit(e) {
-		e.preventDefault();
-		console.log(files);
-	}
-	const [enabled, setEnabled] = useState(false);
 	useEffect(() => {
-		if (files.length === 0) {
-			setEnabled(false);
+		if (file1 && file2) {
+			setUploadStatus(true);
 		} else {
-			setEnabled(true);
+			setUploadStatus(false);
 		}
-	}, [files]);
+	}, [file1, file2]);
+
+	const handleFile1Change = (event) => {
+		setFile1(event.target.files[0]);
+	};
+
+	const handleFile2Change = (event) => {
+		setFile2(event.target.files[0]);
+	};
+
+	const handleUpload = () => {
+		if (!uploadStatus) {
+			alert("لطفاً ابتدا نمونه های خود را انتخاب کنید!");
+			return;
+		}
+		if (file1 && file2) {
+			const newFile1 = new File([file1], "h_samples.csv");
+			const newFile2 = new File([file2], "p_samples.csv");
+			const formData = new FormData();
+			formData.append('files', newFile1);
+			formData.append('files', newFile2);
+
+			const token = JSON.parse(localStorage.getItem('accessToken'));
+			axios
+				.post('http://localhost:8080/api/uploadfile/multi', formData, {
+					headers: {
+						'content-type': 'multipart/form-data',
+						'Authorization': `${String(token.type)} ${String(token.token)}`,
+					},
+					onUploadProgress: (progressEvent) => {
+						const progress = Math.round(
+							(progressEvent.loaded * 100) / progressEvent.total
+						);
+						setUploadProgress(progress);
+					},
+				})
+				.then((response) => {
+					setUploadStatus('!نمونه های شما با موفقیت بارگزاری شدند');
+					console.log('file1.name')
+					console.log(newFile1.name)
+
+					setFile1(null);
+					setFile2(null);
+				})
+				.catch((error) => {
+					console.error(error);
+					setUploadStatus('!خطا در بارگزاری نمونه ها');
+				});
+		}
+	};
+
+	const navigate = useNavigate();
+
+	let logoutFormHandler = async (e) => {
+		e.preventDefault();
+		try {
+			localStorage.removeItem("accessToken");
+			navigate('/login', { replace: true });
+
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	return (
-		<form onSubmit={handleSubmit} className="upload--container">
-			<h1> Multiple File Inputs with Signle Submit Button </h1>
-			<div className="upload--button">
-				<input
-					onChange={onFileUpload}
-					id={1}
-					accept=".jpeg, .pdf, .csv"
-					type="file"
-				/>
+		<div className="file-upload">
+			<h3> نمونه های خود را در قسمت زیر بارگزاری کنید </h3>
+			<div>
+				<p>نمونه های سالم</p>
+				<input type="file" onChange={handleFile1Change} accept=".csv" />
 			</div>
-			<div className="upload--button">
-				<input
-					onChange={onFileUpload}
-					id={2}
-					accept=".jpeg, .pdf, .csv"
-					type="file"
-				/>
+			<div>
+				<p>نمونه های بیمار</p>
+				<input type="file" onChange={handleFile2Change} accept=".csv" />
 			</div>
-			{enabled ? (
-				<button type="submit">آپلود</button>
-			) : (
-				<button disabled type="submit">
-					Submit
-				</button>
+			<div>
+				<Button btnType="submit md" click={handleUpload}>
+					آپلود فایل ها
+				</Button>
+			</div>
+
+			{uploadProgress > 0 && (
+				<div>
+					<p>Uploading: {uploadProgress}%</p>
+					<progress value={uploadProgress} max="100" />
+				</div>
 			)}
-		</form>
+			{uploadStatus && <p>{uploadStatus}</p>}
+
+			<div>
+				<Button btnType="danger md" click={logoutFormHandler}>
+					خروج
+				</Button>
+			</div>
+		</div>
 	);
-};
+}
 
 export default SingleFileUpload;

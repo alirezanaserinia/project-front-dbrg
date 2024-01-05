@@ -15,7 +15,7 @@ const Register = () => {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Username...',
+                    placeholder: 'نام کاربری',
                     pattern: "^[a-zA-Z1-9_]+$",
                 },
                 value: '',
@@ -29,7 +29,7 @@ const Register = () => {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
-                    placeholder: 'Password...',
+                    placeholder: 'رمز عبور',
                 },
                 value: '',
                 validation: {
@@ -47,7 +47,7 @@ const Register = () => {
         document.title = "Register";
         let isUserLoggedin = localStorage.getItem('accessToken');
         if (isUserLoggedin) {
-            navigate('/', { replace: true });
+            navigate('/home', { replace: true });
         }
     }, []);
 
@@ -76,7 +76,7 @@ const Register = () => {
                 // jwt : res.data
                 localStorage.setItem("accessToken", JSON.stringify(res.data));
                 console.log(JSON.parse(localStorage.getItem('accessToken')));
-                navigate('/', { replace: true });
+                navigate('/home', { replace: true });
                 window.location.reload();
             } else {
             }
@@ -135,7 +135,7 @@ const Register = () => {
 
 
     return (
-        <main style={{backgroundColor:"#F7F0E9"}}>
+        <main style={{backgroundColor:"#90e0ef"}}>
             <div class="login_register_main">
                 <div class="login_register">
                     <div class="login_register_welcome_text">
