@@ -26,8 +26,8 @@ function Header() {
                     <FiPower />
                     خروج
                 </span></NavLink>
-            <NavLink to="#">تماس با ما</NavLink>
-            <NavLink to="#">پنل کاربری</NavLink>
+            <NavLink to="#">درباره ما</NavLink>
+            <NavLink to="/result">نتایج</NavLink>
             <NavLink end to="/home">خانه</NavLink>
         </header>
     );

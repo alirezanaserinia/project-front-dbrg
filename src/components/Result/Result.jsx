@@ -13,10 +13,13 @@ function Result() {
 
     return (
         <Layout>
-            <div className='result'>
-                {data.map((item, index) => (
-                    <p key={index}>{item}</p>
-                ))}
+            <div className='result-box'>
+                <div className='result'>
+                    <h1>نتایج</h1>
+                    {data.map((item, index) => (
+                        <p key={index}>{item}</p>
+                    ))}
+                </div>
             </div>
         </Layout>
     );

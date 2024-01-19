@@ -1,6 +1,26 @@
-.result {
+.result-box {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3rem 2rem;
+    padding: 4rem 2rem;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1rem 1.5rem;
+    padding-bottom: 3rem;
+    width: 35%;
+    background-color: #caf0f8;
+    border-color: #0077b6;
+    border-radius: 0.75rem;
+    box-shadow: 0.25rem 0.5rem 0.75rem #0077b6;
+}
+
+.result h1 {
+    text-align: right;
+    align-self: flex-end;
+    padding: 0.5rem 0.5rem;
 }

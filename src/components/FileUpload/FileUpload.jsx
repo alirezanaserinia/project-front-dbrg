@@ -156,7 +156,7 @@ const FileUpload = () => {
 			<div>
 				{loading ? (
 					<div className="overlay">
-						<PropagateLoader size="25" color="#36d7b7" speedMultiplier="0.5" />
+						<PropagateLoader size="25px" color="#36d7b7" speedMultiplier="0.5" />
 						<p>...لطفاً مقداری صبر کنید. برنامه در حال اجرا می باشد</p>
 					</div>
 				) : (
