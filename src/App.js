@@ -1,13 +1,11 @@
-// import './App.css';
 import FileUpload from './components/FileUpload/FileUpload';
+import Layout from './components/Layout/Layout';
 
 function App() {
   return (
-    <div className="App">
-      <FileUpload />
-      {/* <header className="App-header">
-      </header> */}
-    </div>
+    <Layout>
+        <FileUpload />
+    </Layout>
   );
 }
 

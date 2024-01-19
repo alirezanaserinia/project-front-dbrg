@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import BalootLogo from '../../assets/images/baloot-logo.svg';
 import './Login_Register.css';
 import { register } from '../../services/API';
 import { ToastContainer, toast } from 'react-toastify';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
-// import githubLogo from '../../assets/images/github-mark.svg'
 
 const Register = () => {
     const [state, setState] = useState({
@@ -49,7 +47,7 @@ const Register = () => {
         if (isUserLoggedin) {
             navigate('/home', { replace: true });
         }
-    }, []);
+    }, );
 
 
     let formHandler = async (e) => {
@@ -75,9 +73,7 @@ const Register = () => {
             if (res.status === 200) {
                 // jwt : res.data
                 localStorage.setItem("accessToken", JSON.stringify(res.data));
-                console.log(JSON.parse(localStorage.getItem('accessToken')));
                 navigate('/home', { replace: true });
-                // window.location.reload();
             } else {
             }
         } catch (err) {
@@ -135,7 +131,7 @@ const Register = () => {
 
 
     return (
-        <div class="login_register">
+        <div className="login_register">
             <h1>ثبت نام</h1>
             <form onSubmit={formHandler} className='login_btn'>
                 {elementsArray.map((item) => {
