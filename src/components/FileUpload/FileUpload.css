@@ -9,6 +9,26 @@
     box-shadow: 0.25rem 0.5rem 0.75rem #0077b6;
 }
 
+.file-upload ul {
+    direction: rtl;
+    text-align: right;
+    list-style-position: inside;
+}
+
+.file-upload ul p {
+    font-weight: bold;
+    background-color: rgb(255, 255, 97);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    /* text-decoration: underline; */
+    color: black;
+    text-align: center;
+}
+
+.file-upload ul li {
+    margin: 0.5rem 0;
+}
+
 .file-upload label {
     padding: 0.4rem 0.75rem;
     background-color: #00b4d8;

@@ -6,8 +6,9 @@ function Result() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
+        document.title = "Result";
         const dataString = localStorage.getItem('resultData');
-        const data = dataString ? JSON.parse(dataString) : [".خطا در دریافت نتایج. لطفاً دوباره تلاش کنید",];
+        const data = dataString ? JSON.parse(dataString) : [".خطا در دریافت نتایج! لطفاً دوباره تلاش کنید",];
         setData(data);
     }, []);
 

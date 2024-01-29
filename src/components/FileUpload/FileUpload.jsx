@@ -120,9 +120,16 @@ const FileUpload = () => {
 	return (
 		<div className="file-upload">
 			<h2> نمونه های خود را در قسمت زیر بارگزاری کنید </h2>
+			<ul>
+				<p>
+					هنگام بارگزاری نمونه های سالم و بیمار به نکات زیر توجه فرمایید!
+				</p>
+				<li>هرکدام از فایل ها باید به صورت میکرو آرایه و با فرمت csv بارگزاری شوند.</li>
+
+				<li>شناسه ژن ها باید از نوع KEGG ID باشد.</li>
+			</ul>
 			<div className="healthy">
 				<h3>نمونه های سالم</h3>
-				<p>(.csv در قالب میکرو آرایه با فرمت)</p>
 				<label htmlFor="hfileInput">
 					<span>Choose file</span>
 					<input id="hfileInput" type="file" onChange={handleFile1Change} accept=".csv" style={{ display: 'none' }} />
@@ -132,7 +139,6 @@ const FileUpload = () => {
 
 			<div className="patient">
 				<h3>نمونه های بیمار</h3>
-				<p>(.csv در قالب میکرو آرایه با فرمت)</p>
 				<label htmlFor="pfileInput">
 					<span>Choose file</span>
 					<input id="pfileInput" type="file" onChange={handleFile2Change} accept=".csv" style={{ display: 'none' }} />
