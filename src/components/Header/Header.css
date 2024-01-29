@@ -1,0 +1,39 @@
+.header {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    padding: 0.1rem 3rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: #0077b6;
+    box-shadow: 0 2px 2px 2px rgba(2, 21, 78, 0.23);
+}
+
+.header a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    margin: 0 0.5rem;
+    padding: 0.5rem;
+}
+
+.header a:hover {
+    background: #caf0f8;
+    color: #03045e;
+    border-radius: 0.25rem;
+}
+
+.header a.logout {
+    margin-right: auto;
+}
+
+.header a.logout svg {
+    color: red;
+    margin-right: 0.5rem;
+}
+
+.icon-text {
+    display: flex;
+    align-items: center;
+}

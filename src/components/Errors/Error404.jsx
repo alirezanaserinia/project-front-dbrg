@@ -9,12 +9,13 @@ const Error404 = () => {
 
     return (
         <div id="error_box">
-            <div class="error_content">
-                <div class="error_status_code">
+            <div className="error_content">
+                <div className="error_status_code">
                     <h1>404</h1>
                 </div>
-                <h2>Oops! Page not found</h2>
-                <p>The page you are looking for might have been removed had its name changed or is temporarily unavailable. <Link to="/home">Return to homepage</Link></p>
+                <h1>!صفحه مورد نظر یافت نشد</h1>
+                <p>.صفحه ای که به دنبال آن هستید ممکن است در صورت تغییر نام حذف شده باشد یا به طور موقت در دسترس نباشد</p>
+                <p><Link to="/home">بازگشت به صفحه نخست</Link></p>
             </div>
 	    </div>
     )

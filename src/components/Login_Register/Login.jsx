@@ -48,7 +48,7 @@ const Login = () => {
         if (isUserLoggedin) {
             navigate('/home', { replace: true });
         }
-    }, []);
+    }, );
 
     let formHandler = async (e) => {
         e.preventDefault();
@@ -72,9 +72,7 @@ const Login = () => {
             if (res.status === 200) {
                 // jwt : res.data
                 localStorage.setItem("accessToken", JSON.stringify(res.data));
-                console.log(JSON.parse(localStorage.getItem('accessToken')));
                 navigate('/home', { replace: true });
-                // window.location.reload();
             } else {
                 console.log(res);
             }
